@@ -1,0 +1,44 @@
+
+<h1>Formulaire d'information utilisateur</h1>
+
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="firstName">Prénom :</label>
+    <input id="firstName" type="text" formControlName="firstName">
+
+    <p class="error" *ngIf="contactForm.controls.firstName.touched && contactForm.controls.firstName.hasError('required')">
+      Le prénom est obligatoire.
+    </p>
+  </div>
+
+  <div>
+    <label for="lastName">Nom de famille :</label>
+    <input id="lastName" type="text" formControlName="lastName">
+
+    <p class="error" *ngIf="contactForm.controls.lastName.touched && contactForm.controls.lastName.hasError('required')">
+      Le nom de famille est obligatoire.
+    </p>
+  </div>
+
+  <div>
+    <label for="phone">Numéro de téléphone :</label>
+    <input id="phone" type="tel" formControlName="phone">
+
+    <p class="error" *ngIf="contactForm.controls.phone.touched && contactForm.controls.phone.hasError('pattern')">
+      Le numéro doit contenir 10 chiffres. Le premier et le quatrième chiffre doivent être différents de 0.
+    </p>
+  </div>
+
+  <div>
+    <label for="email">Email :</label>
+    <input id="email" type="email" formControlName="email">
+
+    <p class="error" *ngIf="contactForm.controls.email.touched && contactForm.controls.email.hasError('email')">
+      Veuillez saisir une adresse email valide.
+    </p>
+  </div>
+
+  <button type="submit">Soumettre</button>
+
+</form>
