@@ -1,44 +1,90 @@
 
-<h1>Formulaire d'information utilisateur</h1>
+<div class="form-page">
+  <div class="form-card">
 
-<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <h2> Formulaire d'information utilisateur </h2>
 
-  <div>
-    <label for="firstName">Prénom :</label>
-    <input id="firstName" type="text" formControlName="firstName">
-
-    <p class="error" *ngIf="contactForm.controls.firstName.touched && contactForm.controls.firstName.hasError('required')">
-      Le prénom est obligatoire.
+    <p class="description">
+      Les règles reproduisent les contraintes du sujet :
+      prénom/nom obligatoires ; téléphone facultatif
+      au format demandé ; courriel valide si fourni.
     </p>
-  </div>
 
-  <div>
-    <label for="lastName">Nom de famille :</label>
-    <input id="lastName" type="text" formControlName="lastName">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
-    <p class="error" *ngIf="contactForm.controls.lastName.touched && contactForm.controls.lastName.hasError('required')">
-      Le nom de famille est obligatoire.
+      <div class="form-group">
+        <label for="firstName">Prénom *</label>
+        <input
+          id="firstName"
+          type="text"
+          formControlName="firstName"
+        >
+
+        <p class="error"
+          *ngIf="contactForm.controls.firstName.touched &&
+                 contactForm.controls.firstName.hasError('required')">
+          Le prénom est obligatoire.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Nom *</label>
+        <input
+          id="lastName"
+          type="text"
+          formControlName="lastName"
+        >
+
+        <p class="error"
+          *ngIf="contactForm.controls.lastName.touched &&
+                 contactForm.controls.lastName.hasError('required')">
+          Le nom de famille est obligatoire.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Téléphone (facultatif)</label>
+        <input
+          id="phone"
+          type="tel"
+          formControlName="phone"
+          placeholder="613-555-0123"
+        >
+
+        <p class="error"
+          *ngIf="contactForm.controls.phone.touched &&
+                 contactForm.controls.phone.hasError('pattern')">
+          Le numéro doit contenir 10 chiffres.
+          Le premier et le quatrième chiffre doivent être différents de 0.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Courriel (facultatif)</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="nom@exemple.com"
+        >
+
+        <p class="error"
+          *ngIf="contactForm.controls.email.touched &&
+                 contactForm.controls.email.hasError('email')">
+          Veuillez saisir une adresse courriel valide.
+        </p>
+      </div>
+
+      <button type="submit">
+        Soumettre → nouvelle page
+      </button>
+
+    </form>
+
+    <p class="footer-text">
+      Après la soumission, les informations seront affichées
+      sur une nouvelle page.
     </p>
+
   </div>
-
-  <div>
-    <label for="phone">Numéro de téléphone :</label>
-    <input id="phone" type="tel" formControlName="phone">
-
-    <p class="error" *ngIf="contactForm.controls.phone.touched && contactForm.controls.phone.hasError('pattern')">
-      Le numéro doit contenir 10 chiffres. Le premier et le quatrième chiffre doivent être différents de 0.
-    </p>
-  </div>
-
-  <div>
-    <label for="email">Email :</label>
-    <input id="email" type="email" formControlName="email">
-
-    <p class="error" *ngIf="contactForm.controls.email.touched && contactForm.controls.email.hasError('email')">
-      Veuillez saisir une adresse email valide.
-    </p>
-  </div>
-
-  <button type="submit">Soumettre</button>
-
-</form>
+</div>
