@@ -1,1 +1,36 @@
-<p>Le formulaire fonctionne!</p>
+
+<div class="result-container">
+
+  <h2>/resultat</h2>
+
+  <p class="success-message">
+    Le formulaire fonctionne
+  </p>
+
+  <table *ngIf="user">
+    <tr>
+      <th>Prénom</th>
+      <td>{{ user.firstName }}</td>
+    </tr>
+
+    <tr>
+      <th>Nom</th>
+      <td>{{ user.lastName }}</td>
+    </tr>
+
+    <tr>
+      <th>Téléphone</th>
+      <td>{{ user.phone }}</td>
+    </tr>
+
+    <tr>
+      <th>Courriel</th>
+      <td>{{ user.email }}</td>
+    </tr>
+  </table>
+
+  <button type="button" routerLink="/formulaire">
+    ← Retour au formulaire
+  </button>
+
+</div>
